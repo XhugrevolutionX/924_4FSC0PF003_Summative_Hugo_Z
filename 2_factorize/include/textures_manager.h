@@ -9,10 +9,11 @@
 
 namespace TexturesManager {
 
-inline std::array<sf::Texture, 36> textures_;
+  inline std::vector<sf::Texture> textures_;
 
-  void LoadTextures();
+  void LoadTextures(const std::string& path);
   sf::Texture* GetTexture(int id);
+  int GetNbTextures();
 
 };
 

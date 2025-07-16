@@ -12,7 +12,7 @@ GameSpriteManager::GameSpriteManager(const sf::Vector2u winSize)
     type_dist_ = std::uniform_int_distribution<>(0, 2);
     pos_dist_ = std::uniform_real_distribution<float>(0.0, 1.0);
 
-    TexturesManager::LoadTextures();
+    TexturesManager::LoadTextures("_assets/splats/splat");
 }
 
 

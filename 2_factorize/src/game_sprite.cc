@@ -12,7 +12,7 @@ GameSprite::GameSprite(const sf::Vector2f pos)
 
     gen_ = std::mt19937(rd_());
     color_dist_ = std::uniform_int_distribution<>(0, 255);
-    texture_idx_dist_ = std::uniform_int_distribution<>(0, 35);
+    texture_idx_dist_ = std::uniform_int_distribution<>(0, TexturesManager::GetNbTextures() - 1);
     fade_dist_ = std::uniform_real_distribution<float>(30.0, 80.0);
     scale_dist_ = std::uniform_real_distribution<float>(0.75, 1.5);
 
