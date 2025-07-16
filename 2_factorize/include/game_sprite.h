@@ -4,8 +4,10 @@
 
 #ifndef GAME_SPRITE_H
 #define GAME_SPRITE_H
-#include <random>
+#include "textures_manager.h"
+
 #include <SFML/Graphics.hpp>
+#include <random>
 
 // Classe Sprite personnalisée
 class GameSprite {
@@ -17,6 +19,7 @@ class GameSprite {
     sf::Color current_color_;
     float scale_;
     int texture_idx_;
+    sf::Texture* texture_;
 
     // Générateur de nombres aléatoires
     std::random_device rd_;

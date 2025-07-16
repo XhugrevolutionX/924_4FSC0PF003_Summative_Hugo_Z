@@ -16,6 +16,7 @@ GameSprite::GameSprite(const sf::Vector2f pos)
     fade_dist_ = std::uniform_real_distribution<float>(30.0, 80.0);
     scale_dist_ = std::uniform_real_distribution<float>(0.75, 1.5);
 
+
     // Couleur aléatoire
     base_color_ = sf::Color(
         color_dist_(gen_),
@@ -31,6 +32,7 @@ GameSprite::GameSprite(const sf::Vector2f pos)
     // Texture alèatoire
     texture_idx_ = texture_idx_dist_(gen_);
 
+    texture_ = TexturesManager::GetTexture(texture_idx_);
 }
 
 void GameSprite::Update(const float deltaTime) {
@@ -52,10 +54,8 @@ void GameSprite::Update(const float deltaTime) {
 void GameSprite::Draw(sf::RenderWindow& window) {
     if (!is_active_) return;
 
-    const sf::Texture texture(std::format("_assets/splats/splat{:02d}.png", texture_idx_));
-
-    sf::Sprite sprite(texture);
-    sprite.setOrigin({static_cast<float>(texture.getSize().x) / 2.0f, static_cast<float>(texture.getSize().y) / 2.0f});
+    sf::Sprite sprite(*texture_);
+    sprite.setOrigin({static_cast<float>(texture_->getSize().x) / 2.0f, static_cast<float>(texture_->getSize().y) / 2.0f});
     sprite.setColor(current_color_);
     sprite.setScale({scale_, scale_});
     sprite.setPosition(position_);

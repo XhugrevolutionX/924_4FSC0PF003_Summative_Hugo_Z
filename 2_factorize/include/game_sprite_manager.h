@@ -6,7 +6,7 @@
 #define SPRITE_MANAGER_H
 #include <random>
 #include "game_sprite.h"
-
+#include "textures_manager.h"
 
 // Gestionnaire de sprites
 class GameSpriteManager {

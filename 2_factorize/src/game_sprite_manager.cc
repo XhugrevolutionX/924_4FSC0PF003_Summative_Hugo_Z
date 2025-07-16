@@ -11,6 +11,8 @@ GameSpriteManager::GameSpriteManager(const sf::Vector2u winSize)
     gen_ = std::mt19937(rd_());
     type_dist_ = std::uniform_int_distribution<>(0, 2);
     pos_dist_ = std::uniform_real_distribution<float>(0.0, 1.0);
+
+    TexturesManager::LoadTextures();
 }
 
 
