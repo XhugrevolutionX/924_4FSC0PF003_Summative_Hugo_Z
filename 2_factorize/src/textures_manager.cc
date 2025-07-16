@@ -8,28 +8,31 @@
 
 namespace TexturesManager {
 
-void TexturesManager::LoadTextures(const std::string& path) {
+std::size_t number_of_files_in_directory(std::filesystem::path path) {
+  using std::filesystem::directory_iterator;
+  return std::distance(directory_iterator(path), directory_iterator{});
+}
 
-    int files_idx = 0;
+void TexturesManager::LoadTextures(const std::string &path, const std::string &name) {
 
-    sf::Texture texture;
+  sf::Texture texture;
 
-    std::string texture_name = path + std::format("{:02d}.png", files_idx);
+  for (int i = 0; i < number_of_files_in_directory(path); i++) {
+    std::string texture_full_path = path + name + std::format("{:02d}.png", i);
 
-    while (texture.loadFromFile(texture_name))
-    {
+    if (texture.loadFromFile(texture_full_path)) {
       textures_.emplace_back(texture);
-      files_idx++;
-
-      texture_name = path + std::format("{:02d}.png", files_idx);
+    }
+    else {
+      break;
     }
   }
+}
 
-  sf::Texture *TexturesManager::GetTexture(const int id) {
-    return &textures_[id];
-  }
+sf::Texture *TexturesManager::GetTexture(const int id) {
+  return &textures_[id];
+}
 
-  int GetNbTextures() {
-    return static_cast<int>(textures_.size());
-  }
+int GetNbTextures() { return static_cast<int>(textures_.size()); }
+
 } // namespace TexturesManager

@@ -11,7 +11,7 @@ namespace TexturesManager {
 
   inline std::vector<sf::Texture> textures_;
 
-  void LoadTextures(const std::string& path);
+  void LoadTextures(const std::string& path, const std::string& name);
 
   sf::Texture* GetTexture(int id);
 
